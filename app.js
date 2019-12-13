@@ -1,5 +1,3 @@
-//requiring all my classes
-
 const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -7,7 +5,7 @@ const Manager = require("./lib/Manager");
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-// all the questions being asked
+// All possible questions to ask.
 const initialQuestions = [
   {
     type: "input",
@@ -107,14 +105,14 @@ inquirer
     
     const templateMainFile = fs.readFileSync(`./templates/main.html`,  { encoding: 'utf8' });
 
-    //first the manager card
+    //Prompting manager question first
     const manager = new Manager (user.name , user.id , user.email , user.officeNumber);
     
     let team = renderHTML(manager);
     let proceed = true;
 
 
-    //adding team members
+    //Adding members to the team
     AddorStop(proceed,user.member[0],team,templateMainFile);
     
     
@@ -142,7 +140,7 @@ function renderHTML (position){
 
     return temporaryFile;
 }
-
+// Generating main html file.
 async function AddorStop (proceed,chosenMember,team, templateMainFile) {
   try {
     do{
